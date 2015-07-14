@@ -12,8 +12,8 @@ function cors(req, res, next) {
     next();
 };
 
-if (process.env.MONGOHQ_URL) {
-  Mongoose.connect(process.env.MONGOHQ_URL);
+if (process.env.MONGOLAB_URI) {
+  Mongoose.connect(process.env.MONGOLAB_URI);
 } else {
   Mongoose.connect("localhost", "barandi-training");
 }
