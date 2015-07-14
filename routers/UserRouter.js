@@ -4,10 +4,10 @@ var UserRouter = function(app, Mongoose) {
 	/**
 	 * Get all users.
 	 */
-	app.get("/users", function(request, response) {
-		User.find(function(error, result) {
+	app.get("/users/:id", function(request, response) {
+		User.find({_accountId: request.params.id}, function(error, result) {
 			response.status(200).json(result);
-		})
+		});
 	});
 
 	/**
