@@ -10,6 +10,12 @@ var UserRouter = function(app, Mongoose) {
 		})
 	});
 
+	app.get("/users", function(request, response) {
+		User.find(function(error, result) {
+			response.status(200).json(result);
+		})
+	});
+
 	/**
 	 * Get an user.
 	 */
