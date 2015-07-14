@@ -13,7 +13,7 @@ var UserRouter = function(app, Mongoose) {
 	app.get("/users", function(request, response) {
 		User.find(function(error, result) {
 			response.status(200).json(result);
-		})
+		});
 	});
 
 	/**
@@ -35,7 +35,8 @@ var UserRouter = function(app, Mongoose) {
 			username: request.body.username,
 			email: request.body.email,
 			city: request.body.city,
-			isAdmin: request.body.isAdmin
+			isAdmin: request.body.isAdmin,
+			accountId: request.body.accountId
 		});
 
 		user.save(function(error, result) {
@@ -57,6 +58,7 @@ var UserRouter = function(app, Mongoose) {
 				result.email = request.body.email;
 				result.city = request.body.city;
 				result.isAdmin = request.body.isAdmin;
+				result.accountId = request.body.accountId;
 
 				result.save(function(error, result) {
 					response.status(200).json(result);
@@ -69,6 +71,13 @@ var UserRouter = function(app, Mongoose) {
 		User.remove({_id: request.params.id}, function(error, result) {
 			response.status(200).json(result);
 		});
+	});
+
+	User.find(function(err, data) {
+		for (var i = 0; i < data.length; i++) {
+			data[i].accountId = data.length % 3 + 1;
+			data.save();
+		}
 	});
 };
 
