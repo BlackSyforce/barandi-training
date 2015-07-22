@@ -72,13 +72,6 @@ var UserRouter = function(app, Mongoose) {
 			response.status(200).json(result);
 		});
 	});
-
-	User.find(function(err, data) {
-		for (var i = 0; i < data.length; i++) {
-			data[i].accountId = data.length % 3 + 1;
-			data.save();
-		}
-	});
 };
 
 module.exports = UserRouter;

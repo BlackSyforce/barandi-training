@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 // Connected or Connecting
 if (Mongoose.connection.readyState == 1 || Mongoose.connection.readyState == 2) {
-    var modules = ["User"];
+    var modules = ["User", "Project"];
 
     modules.forEach(function(module) {
         require("./models/" + module + "Model")(Mongoose);
