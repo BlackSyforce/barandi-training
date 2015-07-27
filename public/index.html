@@ -14,6 +14,13 @@
 	<link rel="stylesheet" type="text/css" href="./css/roleSkillstyle.css">
 	<script type="text/javascript" src="./js/role.js"></script>
 	<script type="text/javascript" src="./js/skill.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./css/projectlistStyle.css">
+	<link rel="stylesheet" type="text/css" href="./css/projectprofileStyle.css">
+	
+	<script type="text/javascript" src="./js/ProjectListUI.js"></script>
+    <script type="text/javascript" src="./js/ProjectProfileUI.js"></script>
+
 <style>
 #header{
 	width:100%;
@@ -98,6 +105,42 @@
 				</form>
 			</div>
 			
+			<div id="ProjectTable">
+				<table class="table table-hover">
+					<thead>
+							<tr>
+								<th>Project name</th>s
+								<th>Action</th>
+							</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button type="button" id="addingProj">Add Proj</button>
+			</div>
+
+			<div  id="projectForm">
+				<form>
+					<div class="form-group">
+					    <label>Project</label>
+					    <input type="text" class="form-control" placeholder="Project">
+					</div>
+					<input type="button" value="Save" id="saveProject">
+				</form>
+			</div>
+
+			<div id="ProjectProfileTable">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Author</th>
+							<th>Users</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+
 		</div>
 	</div>
 
