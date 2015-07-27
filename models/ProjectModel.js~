@@ -4,7 +4,7 @@ var Project = function(Mongoose) {
         description: String,
         author: String,
         users: [{
-            user: { type: Mongoose.Schema.ObjectId }
+            user: { type: Mongoose.Schema.ObjectId, ref: "User" }
         }]
     });
 
