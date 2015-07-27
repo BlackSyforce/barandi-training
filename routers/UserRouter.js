@@ -36,6 +36,7 @@ var UserRouter = function(app, Mongoose) {
 			email: request.body.email,
 			city: request.body.city,
 			isAdmin: request.body.isAdmin,
+			role: request.body.role,
 			accountId: request.body.accountId
 		});
 
@@ -58,6 +59,7 @@ var UserRouter = function(app, Mongoose) {
 				result.email = request.body.email;
 				result.city = request.body.city;
 				result.isAdmin = request.body.isAdmin;
+				result.role = request.body.role;
 				result.accountId = request.body.accountId;
 
 				result.save(function(error, result) {
