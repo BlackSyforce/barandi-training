@@ -5,13 +5,13 @@ var SkillRouter = function(app, Mongoose) {
 	 * Get all skills.
 	 */
 	app.get("/skills/:id", function(request, response) {
-		User.find({accountId: request.params.id}, function(error, result) {
+		Skill.find({accountId: request.params.id}, function(error, result) {
 			response.status(200).json(result);
 		})
 	});
 
 	app.get("/skills", function(request, response) {
-		User.find(function(error, result) {
+		Skill.find(function(error, result) {
 			response.status(200).json(result);
 		});
 	});
@@ -20,7 +20,7 @@ var SkillRouter = function(app, Mongoose) {
 	 * Get a skill.
 	 */
 	app.get("/skill/:id", function(request, response) {
-		User.findOne({_id: request.params.id}, function(error, result) {
+		Skill.findOne({_id: request.params.id}, function(error, result) {
 			response.status(200).json(result);
 		});
 	});
