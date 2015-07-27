@@ -1,3 +1,13 @@
 #roleList {
-	background: #fff;
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+#roleForm {
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+.action {
+	cursor: pointer;
 }
