@@ -6,6 +6,7 @@ var User = function(Mongoose) {
         email: String,
         city: String,
         isAdmin: Boolean,
+        role: String,
         accountId: Number
     });
 

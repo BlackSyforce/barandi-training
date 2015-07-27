@@ -6,7 +6,7 @@ var ProjectRouter = function(app, Mongoose) {
 	 * Get all projects.
 	 */
 	app.get("/projects", function(request, response) {
-		Project.find().populate("users", "users.name").exec(function(error, result) {
+		Project.find(function(error, result) {
 			response.status(200).json(result);
 		});
 	});
