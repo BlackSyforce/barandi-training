@@ -1,6 +1,5 @@
 var RoleRouter = function(app, Mongoose) {
 	var Role = Mongoose.models.Role;
-	var User = Mongoose.models.User;
 
 	/**
 	 * Get all roles.
@@ -15,18 +14,13 @@ var RoleRouter = function(app, Mongoose) {
 	 * Save a new role
 	 */
 	app.post("/role", function(request, response) {
-		User.find({_id: request.body.users}, function(error, result) {
-			if (!error) {
-				console.log(result);
 				var role = new Role({
-					role: request.body.role,
-					users: result
+					role: request.body.role
 				});
 
 				role.save(function(error, result) {
 					response.status(200).json(result);
 				});
-			}
 		});
 	});
 
@@ -40,7 +34,6 @@ var RoleRouter = function(app, Mongoose) {
 				response.status(200).json(result);
 			} else {
 				result.role = request.body.role;
-				result.users = request.body.users;
 
 				result.save(function(error, result) {
 					response.status(200).json(result);

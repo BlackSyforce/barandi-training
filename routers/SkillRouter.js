@@ -30,8 +30,7 @@ var SkillRouter = function(app, Mongoose) {
 	 */
 	app.post("/skill", function(request, response) {
 		var skill = new Skill({
-			name: request.body.name	,
-			users: request.body.users
+			name: request.body.name
 		});
 
 		skill.save(function(error, result) {
@@ -48,7 +47,6 @@ var SkillRouter = function(app, Mongoose) {
 				response.status(200).json(result);
 			} else {
 				result.name = request.body.name;
-				result.users = request.body.users;
 
 				result.save(function(error, result) {
 					response.status(200).json(result);

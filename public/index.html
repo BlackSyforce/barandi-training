@@ -11,8 +11,9 @@
 	<script type="text/javascript" src="./js/jquery.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="./css/rolestyle.css">
+	<link rel="stylesheet" type="text/css" href="./css/roleSkillstyle.css">
 	<script type="text/javascript" src="./js/role.js"></script>
+	<script type="text/javascript" src="./js/skill.js"></script>
 <style>
 #header{
 	width:100%;
@@ -73,6 +74,29 @@
 				</form>
 			</div>
 
+			<div id="skillList" class="hidden">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Skill</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button type="button" class="btn btn-success" id="addingS">Add Skill</button>
+			</div>
+
+			<div class="well hidden" id="skillForm">
+				<form>
+					<div class="form-group">
+					    <label>Skill</label>
+					    <input type="text" class="form-control" placeholder="Skill">
+					</div>
+					<input type="button" value="Save" id="saveSkill" class="btn btn-success">
+				</form>
+			</div>
+			
 		</div>
 	</div>
 </body>

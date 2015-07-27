@@ -1,9 +1,6 @@
 var Skill = function(Mongoose) {
 	var schema = Mongoose.Schema({
-		name: String,
-		users: [{
-            user: { type: Mongoose.Schema.ObjectId }
-        }]
+		name: String
     });
 
     var Skill = Mongoose.model("Skill", schema);
