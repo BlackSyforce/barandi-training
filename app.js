@@ -21,6 +21,7 @@ if (process.env.MONGOLAB_URI) {
 app.use(cors);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use("/", Express.static(__dirname + "/public"));
 
 // Connected or Connecting
 if (Mongoose.connection.readyState == 1 || Mongoose.connection.readyState == 2) {

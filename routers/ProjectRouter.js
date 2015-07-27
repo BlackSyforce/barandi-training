@@ -39,15 +39,15 @@ var ProjectRouter = function(app, Mongoose) {
 			if (!error) {
 				console.log(result);
 				var project = new Project({
-					name: request.body.name.
+					name: request.body.name,
 					description: request.body.description,
 					author: request.body.author,
 					users: result
 
-				})
+				});
 				project.save(function(error, result){
 					response.status(200).json(result);
-				})
+				});
 
 			}
 		}
