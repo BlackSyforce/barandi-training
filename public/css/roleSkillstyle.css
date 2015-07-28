@@ -1,9 +1,9 @@
-#roleList {
+#roleList, #skillList {
 	width: 70%;
 	margin: 50px 100px;
 	float: left;
 }
-#roleForm {
+#roleForm, #skillForm {
 	width: 70%;
 	margin: 50px 100px;
 	float: left;

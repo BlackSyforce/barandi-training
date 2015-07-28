@@ -4,7 +4,7 @@ $(function() {
 	var editMode = false;
 
 	function renderTable() {
-		var $template = $('<tr><td><td class="action"><span class="glyphicon glyphicon-remove action" aria-hidden="true"></span></td></tr>');
+		var $template = $('<tr><td><td class="action"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td></tr>');
 		var $body = $("#roleList tbody");
 
 		for (var i = 0; i < roleList.length; i++) {
@@ -55,6 +55,7 @@ $(function() {
 	function addEvents () {
 		$('#role').on('click', function() {
 			hideForm();
+			$('#projectBody div').addClass('hidden');
 			showTable();
 		});
 
