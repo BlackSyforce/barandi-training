@@ -56,6 +56,7 @@ $(function() {
 		$('#role').on('click', function() {
 			hideForm();
 			$('#projectBody div').addClass('hidden');
+			$('#projectBody div form div').removeClass('hidden');
 			showTable();
 		});
 
