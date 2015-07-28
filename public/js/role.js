@@ -69,18 +69,23 @@ $(function() {
 			editMode = false;
 		});
 
-		$('#roleList table').on('click', 'tr', function(e) {
+		$('#roleList table').on('click', 'td:not(:last-child)', function(e) {
 			if ( $(e.target).hasClass("action") ) {
 				return;
 			}
 			hideTable();
 			showForm();
+
 			var $oldData = $(this).find('td');
 			console.log('here');
 			editIndex = $(this).index();
+
+			var index = $(this).parent().index();
 			var $newData = $("#roleForm form input[type='text']");
+
 			for (var i = 0; i < $newData.length; i++) {
 				$($newData[i]).val($($oldData[i]).text());
+				$($newData[i]).val(roleList[index].role);
 			}
 			editMode = true;
 		});

@@ -19,7 +19,7 @@ $(function() {
 			$($items[0]).text(projectList[i].name);
 			$($items[1]).text(projectList[i].description);
 			$($items[2]).text(projectList[i].author);
-			$($items[3]).text(projectList[i].users);
+			$($items[3]).text(projectList[i].users.join('/ '));
 
 			$body.append($element);
 		}
@@ -41,6 +41,8 @@ $(function() {
 
 	function showForm() {
 		$('#projectForm').removeClass('hidden');
+		clearUsers();
+		renderUsers();
 	}
 
 	function hideForm() {
@@ -78,12 +80,15 @@ $(function() {
 
 			var $label = $('<label></label><br />');
 			var $check = $('<input type="checkbox">');
-			$($label).text(userProj[i].firstName + " " +userProj[i].lastName);
+			$($label).text(userProj[i].firstname + " " +userProj[i].lastname);
 			$($check).val(userProj[i]._id);
-			console.log('aaa',userProj)
 			$body.append($check);
 			$body.append($label);
 		}
+	}
+
+	function clearUsers () {
+		$('#usersP').empty();
 	}
 
 	function addEvents () {
@@ -97,7 +102,6 @@ $(function() {
 		$('#addingProj').on('click', function() {
 			hideTable();
 			showForm();
-			renderUsers();
 			editMode = false;
 		});
 
@@ -138,20 +142,31 @@ $(function() {
 		$("#saveProject").on('click', function() {
 			if (editMode){
 				var $items = $("#projectForm form input[type='text']");
+				var $checksAll = $("#projectForm form input[type='checkbox']");
+				var checksCount = 0;
 				var objNew = {
 					name: $($items[0]).val(),
 					description: $($items[1]).val(),
-					author: $($items[2]).val(),
-					users: $($items[3]).val()
+					author: $($items[2]).val()
 				};
 				console.log(objNew)
+				objNew.users = [];
 
 				var newIndex = projectList[editIndex]._id;
+				for ( var x=0; x<$checksAll.length; x++ ) {
+					console.log($($checksAll[x]))
+					if ( $checksAll[x].checked ) {
+						checksCount++;
+						objNew.users.push($($checksAll[x]).val());
+					}
+				}
 
 				jQuery.ajax({
 					method: "PUT",
+					dataType: "json",
+					contentType: "application/json",
 					url: "http://localhost:4000/project/" + newIndex,
-					data: objNew
+					data: JSON.stringify(objNew)
 				}) .done(function(data) {
 					projectList[editIndex].name = objNew.name;
 					projectList[editIndex].description = objNew.description;
