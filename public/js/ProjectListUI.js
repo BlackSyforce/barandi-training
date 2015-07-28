@@ -41,7 +41,6 @@ $(function() {
 
 	function showForm() {
 		$('#projectForm').removeClass('hidden');
-		renderUsers();
 	}
 
 	function hideForm() {
@@ -81,7 +80,7 @@ $(function() {
 			var $check = $('<input type="checkbox">');
 			$($label).text(userProj[i].firstName + " " +userProj[i].lastName);
 			$($check).val(userProj[i]._id);
-
+			console.log('aaa',userProj)
 			$body.append($check);
 			$body.append($label);
 		}
@@ -98,6 +97,7 @@ $(function() {
 		$('#addingProj').on('click', function() {
 			hideTable();
 			showForm();
+			renderUsers();
 			editMode = false;
 		});
 
