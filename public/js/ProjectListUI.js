@@ -14,7 +14,10 @@ $(function() {
 			var $element = $template.clone();
 
 			var $items = $element.find("td");
-			$($items[0]).text(projectList[i].proj);
+			$($items[0]).text(projectList[i].name);
+			$($items[1]).text(projectList[i].description);
+			$($items[2]).text(projectList[i].author);
+			$($items[3]).text(projectList[i].users);
 
 			$body.append($element);
 		}
@@ -109,7 +112,10 @@ $(function() {
 			if (editMode){
 				var $items = $("#projectForm form input[type='text']");
 				var objNew = {
-					proj: $($items[0]).val()
+					name: $($items[0]).val(),
+					description: $($items[1]).val(),
+					author: $($items[2]).val(),
+					users: $($items[3]).val()
 				};
 				console.log(objNew)
 
@@ -120,7 +126,10 @@ $(function() {
 					url: "http://localhost:4000/project/" + newIndex,
 					data: objNew
 				}) .done(function(data) {
-					projectList[editIndex].proj = objNew.proj;
+					projectList[editIndex].name = objNew.name;
+					projectList[editIndex].description = objNew.description;
+					projectList[editIndex].author = objNew.author;
+					projectList[editIndex].users = objNew.users;
 					clearTable();
 					renderTable();
 				});
@@ -131,7 +140,10 @@ $(function() {
 			} else {
 				var $items = $("#projectForm form input[type='text']");
 				var obj = {
-					proj: $($items[0]).val()
+					name: $($items[0]).val(),
+					description: $($items[1]).val(),
+					author: $($items[2]).val(),
+					users: $($items[3]).val()
 				};
 
 				jQuery.ajax({
@@ -142,6 +154,7 @@ $(function() {
 					projectList.push(data);
 					clearTable();
 					renderTable();
+
 				});
 
 				hideForm();
