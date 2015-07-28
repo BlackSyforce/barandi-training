@@ -67,6 +67,12 @@ $(function(){
 		});
 		$("#addUser").on("click", function(){
 			$("#userTableDiv").addClass("hidden");
+			console.log($("#roleSelect"));
+			for (i=0;i<userRoles.length;i++){
+				$options = $("<option></option>");
+				$options.text(userRoles[i].role);
+				$("#roleSelect").append($options)
+			}
 			showUserForm();
 			editMode = false;
 		});
