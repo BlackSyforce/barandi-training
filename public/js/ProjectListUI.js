@@ -7,14 +7,14 @@ $(function() {
 
 
 	function renderTable() {
-		var $template = $("<tr><td></td><td class='action'>X</td></tr>");
+		var $template = $("<tr><td></td><td></td><td></td><td></td><td class='action'>X</td></tr>");
 		var $body = $("#ProjectTable tbody");
 
 		for (var i = 0; i < projectList.length; i++) {
 			var $element = $template.clone();
 
 			var $items = $element.find("td");
-			$($items[0]).text(projectList[i].projname);
+			$($items[0]).text(projectList[i].proj);
 
 			$body.append($element);
 		}
@@ -35,15 +35,15 @@ $(function() {
 	}
 
 	function showForm() {
-		$('#ProjectTable').removeClass('hidden');
+		$('#projectForm').removeClass('hidden');
 	}
 
 	function hideForm() {
-		$('#ProjectTable').addClass('hidden');
+		$('#projectForm').addClass('hidden');
 	}
 
 	function clearForm() {
-		$("#ProjectTable form input[type='text']").val("");
+		$("#projectForm form input[type='text']").val("");
 	}
 
 	jQuery.ajax({
@@ -61,6 +61,7 @@ $(function() {
 		$('#projects').on('click', function() {
 			hideForm();
 			$('#projectBody div').addClass('hidden');
+			$('#projectBody div form div').removeClass('hidden');
 			showTable();
 		});
 
