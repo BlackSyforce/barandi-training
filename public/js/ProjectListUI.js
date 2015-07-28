@@ -1,15 +1,10 @@
 $(function() {
 
-	var projectList = [{
-		projname: "tablemaker"
-	},
-	{
-		projname: "lala"
+	var projectList = [];
 
-	},
-	{
-		projname: "barandi"
-	}];
+	var editIndex;
+	var editMode = false;
+
 
 	function renderTable() {
 		var $template = $("<tr><td></td><td class='action'>X</td></tr>");
@@ -23,8 +18,6 @@ $(function() {
 
 			$body.append($element);
 		}
-
-		$("#ProjectTable").append('<button type="button" class="projbutton">Add Role</button>')
 
 	}
 
@@ -64,8 +57,9 @@ $(function() {
 	});
 
 	function addEvents () {
-		$('#ProjectTable').on('click', function() {
+		$('#projects').on('click', function() {
 			hideForm();
+			$('#projectBody div').addClass('hidden');
 			showTable();
 		});
 
@@ -84,7 +78,7 @@ $(function() {
 			var $oldData = $(this).find('td');
 			console.log('here');
 			editIndex = $(this).index();
-			var $newData = $("#ProjectTable form input[type='text']");
+			var $newData = $("#projectForm form input[type='text']");
 			for (var i = 0; i < $newData.length; i++) {
 				$($newData[i]).val($($oldData[i]).text());
 			}
@@ -113,7 +107,7 @@ $(function() {
 			if (editMode){
 				var $items = $("#projectForm form input[type='text']");
 				var objNew = {
-					project: $($items[0]).val()
+					proj: $($items[0]).val()
 				};
 				console.log(objNew)
 
@@ -121,10 +115,10 @@ $(function() {
 
 				jQuery.ajax({
 					method: "PUT",
-					url: "http://localhost:4000/role/" + newIndex,
+					url: "http://localhost:4000/project/" + newIndex,
 					data: objNew
 				}) .done(function(data) {
-					projectList[editIndex].project = objNew.project;
+					projectList[editIndex].proj = objNew.proj;
 					clearTable();
 					renderTable();
 				});
@@ -135,7 +129,7 @@ $(function() {
 			} else {
 				var $items = $("#projectForm form input[type='text']");
 				var obj = {
-					project: $($items[0]).val()
+					proj: $($items[0]).val()
 				};
 
 				jQuery.ajax({
@@ -155,6 +149,6 @@ $(function() {
 		});
 	}
 
-	renderTable();
+	addEvents();
 
 });

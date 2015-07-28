@@ -11,17 +11,16 @@
 	<script type="text/javascript" src="./js/jquery.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="./css/rolestyle.css">
+	<link rel="stylesheet" type="text/css" href="./css/roleSkillstyle.css">
+	<script type="text/javascript" src="./js/role.js"></script>
+	<script type="text/javascript" src="./js/skill.js"></script>
 
-	<!--
+	<script type="text/javascript" src="./js/ProjectListUI.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/projectlistStyle.css">
+	<script type="text/javascript" src="./js/ProjectProfileUI.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/projectprofileStyle.css">
 	
-	<script type="text/javascript" src="./js/ProjectListUI.js"></script>
-    <script type="text/javascript" src="./js/ProjectProfileUI.js"></script>
-    -->
-
-	<script type="text/javascript" src="./js/role.js"></script>
+    
 
 <style>
 #header{
@@ -84,44 +83,82 @@
 				</form>
 			</div>
 
-			<!--
-			<div id="ProjectTable">
+			<div id="skillList" class="hidden">
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>Skill</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button type="button" class="btn btn-success" id="addingS">Add Skill</button>
+			</div>
+
+			<div class="well hidden" id="skillForm">
+				<form>
+					<div class="form-group">
+					    <label>Skill</label>
+					    <input type="text" class="form-control" placeholder="Skill">
+					</div>
+					<input type="button" value="Save" id="saveSkill" class="btn btn-success">
+				</form>
+			</div>
+			
+			
+			<div id="ProjectTable" class="hidden">
 				<table class="table table-hover">
 					<thead>
 							<tr>
 								<th>Project name</th>s
-								<th>Action</th>
+								<th>Delete</th>
 							</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
-				<button type="button" id="addingProj">Add Proj</button>
+				<button type="button" class="btn btn-success" id="addingProj">Add Project</button>
 			</div>
-
-			<div  id="projectForm">
+			
+			<div  class="well hidden" id="projectForm">
 				<form>
 					<div class="form-group">
 					    <label>Project</label>
 					    <input type="text" class="form-control" placeholder="Project">
 					</div>
-					<input type="button" value="Save" id="saveProject">
+					<input type="button" value="Save" id="saveProject" class="btn btn-success">
 				</form>
 			</div>
 
-			<div id="ProjectProfileTable">
+			<div id="ProjectProfileTable" class="hidden">
 				<table class="table table-hover">
 					<thead>
 						<tr>
 							<th>Description</th>
 							<th>Author</th>
 							<th>Users</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
 				</table>
 			</div>
 
-			-->
+			<div  class="well hidden" id="projectEditForm">
+				<form>
+					<div class="form-group">
+					    <label>Description</label>
+					    <input type="text" class="form-control" placeholder="Description">
+					    <label>Author</label>
+					    <input type="text" class="form-control" placeholder="Author">
+					    <label>Users</label>
+					    <input type="text" class="form-control" placeholder="Users">
+					</div>
+					<input type="button" value="Save" id="editProject" class="btn btn-success">
+				</form>
+			</div>
+
+			
 
 		</div>
 	</div>

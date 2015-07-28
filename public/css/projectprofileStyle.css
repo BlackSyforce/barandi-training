@@ -1,5 +1,15 @@
-#ProjectTable {
+#ProjectProfileTable{
 	width: 70%;
 	margin: 50px 100px;
 	float: left;
+}
+
+#projectEditForm{
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+
+.action {
+	cursor: pointer;
 }
