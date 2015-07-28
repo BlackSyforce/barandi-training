@@ -3,9 +3,7 @@ var Project = function(Mongoose) {
         name: String,
         description: String,
         author: String,
-        users: [{
-            user: { type: Mongoose.Schema.ObjectId }
-        }]
+        users: [Mongoose.Schema.Types.ObjectId]
     });
 
     var Project = Mongoose.model("Project", schema);
