@@ -22,9 +22,9 @@ $(function(){
 
 	function renderTable(){
 
-		var $template = $("<tr><td class='firstName'></td>" +
-							"<td class='lastName'></td>" +
-							"<td class='userName'></td>" +
+		var $template = $("<tr><td class='firstname'></td>" +
+							"<td class='lastname'></td>" +
+							"<td class='username'></td>" +
 							"<td class='eMail'></td>" +
 							"<td class='userRole'></td>" +
 							"<td class='action'>X</td></tr>");
@@ -34,9 +34,9 @@ $(function(){
 			var $element = $template.clone();
 
 			var $items = $element.find("td");
-			$($items[0]).text(userList[i].firstName);
-			$($items[1]).text(userList[i].lastName);
-			$($items[2]).text(userList[i].userName);
+			$($items[0]).text(userList[i].firstname);
+			$($items[1]).text(userList[i].lastname);
+			$($items[2]).text(userList[i].username);
 			$($items[3]).text(userList[i].email);
 			$($items[4]).text(userList[i].role);
 
@@ -69,18 +69,18 @@ $(function(){
 			showUserForm();
 			editMode = false;
 		});
-		$("userTable").on("click", ".firstName", function(){
+		console.log($("#userTable"));
+		$("#userTable tbody").on("click", "td:not(:last-child)", function(){
 			showUserForm();
 			editMode = true;
 			editIndex = $(this).parent().index();
-			$(".user-form input[name='firstName']").val(userList[editIndex].firstName);
-			$(".user-form input[name='lastName']").val(userList[editIndex].lastName);
-			$(".user-form input[name='userName']").val(userList[editIndex].userName);
-			$(".user-form input[name='eMail']").val(userList[editIndex].email);
-			$(".user-form input[name='city']").val(userList[editIndex].city);
-			$(".user-form input[name='role']").val(userList[editIndex].role);
-			$(".user-form input[name='skill']").val(userList[editIndex].skill);
-			$(".user-form input[name='accountId']").val(userList[editIndex].accountId);
+			$(".form-group input[name='firstname']").val(userList[editIndex].firstname);
+			$(".form-group input[name='lastname']").val(userList[editIndex].lastname);
+			$(".form-group input[name='username']").val(userList[editIndex].username);
+			$(".form-group input[name='eMail']").val(userList[editIndex].email);
+			$(".form-group input[name='city']").val(userList[editIndex].city);
+			$(".form-group input[name='role']").val(userList[editIndex].role);
+			$(".form-group input[name='skill']").val(userList[editIndex].skill);
 			if (userList[editIndex].isAdmin){
 				$("#isAdmin").prop("checked",true);
 			} else {
@@ -92,14 +92,13 @@ $(function(){
 			if (editMode){
 				var $items = $("#userForm form input[type='text']");
 				var objNew = {
-					firstName: $($items[0]).val(),
-					lastName: $($items[1]).val(),
-					userName: $($items[2]).val(),
+					firstname: $($items[0]).val(),
+					lastname: $($items[1]).val(),
+					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
 					role: $($items[5]).val(),
-					skill: $($items[6]).val(),
-					accountId: $($items[7]).val(),
+					skill: $($items[6]).val()
 
 				};
 				if ($("#isAdmin").attr("checked")){
@@ -125,14 +124,13 @@ $(function(){
 			}else {
 				var $items = $("#userForm form input[type='text']");
 				var obj = {
-					firstName: $($items[0]).val(),
-					lastName: $($items[1]).val(),
-					userName: $($items[2]).val(),
+					firstname: $($items[0]).val(),
+					lastname: $($items[1]).val(),
+					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
 					role: $($items[5]).val(),
-					skill: $($items[6]).val(),
-					accountId: $($items[7]).val()
+					skill: $($items[6]).val()
 				};
 				if ($("#isAdmin").attr("checked")){
 					obj.isAdmin = true;

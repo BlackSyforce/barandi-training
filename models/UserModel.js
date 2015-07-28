@@ -1,13 +1,12 @@
 var User = function(Mongoose) {
     var schema = Mongoose.Schema({
-        firstName: String,
-        lastName: String,
-        userName: String,
+        firstname: String,
+        lastname: String,
+        username: String,
         email: String,
         city: String,
         isAdmin: Boolean,
         role: String,
-        accountId: Number,
         skill: String
     });
 
