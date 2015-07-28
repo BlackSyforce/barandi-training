@@ -1,5 +1,6 @@
 $(function(){
 	var userList = [];
+	var userRoles = [];
 	var editIndex;
 	var editMode = false;
 
@@ -74,12 +75,17 @@ $(function(){
 			showUserForm();
 			editMode = true;
 			editIndex = $(this).parent().index();
+			console.log($("#roleSelect"));
+			for (i=0;i<userRoles.length;i++){
+				$options = $("<option></option>");
+				$options.text(userRoles[i].role);
+				$("#roleSelect").append($options)
+			}
 			$(".form-group input[name='firstname']").val(userList[editIndex].firstname);
 			$(".form-group input[name='lastname']").val(userList[editIndex].lastname);
 			$(".form-group input[name='username']").val(userList[editIndex].username);
 			$(".form-group input[name='eMail']").val(userList[editIndex].email);
 			$(".form-group input[name='city']").val(userList[editIndex].city);
-			$(".form-group input[name='role']").val(userList[editIndex].role);
 			$(".form-group input[name='skill']").val(userList[editIndex].skill);
 			if (userList[editIndex].isAdmin){
 				$("#isAdmin").prop("checked",true);
@@ -163,6 +169,13 @@ $(function(){
 		userList = users;
 		clearTable();
 		renderTable();
+	});
+	$.ajax({
+		method: 'GET',
+		url: 'http://localhost:4000/roles'
+	}).done(function(roles){
+		console.log(roles);
+		userRoles = roles;
 	});
 	addEvents();
 
