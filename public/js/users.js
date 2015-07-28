@@ -174,7 +174,7 @@ $(function(){
 				}
 				jQuery.ajax({
 					method: "POST",
-					url: "http://localhost:4000/user/" + newIndex ,
+					url: "http://localhost:4000/user",
 					data: obj
 				}) .done(function(data) {
 					userList.push(data);
