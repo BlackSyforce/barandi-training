@@ -134,7 +134,7 @@ $(function(){
 					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
-					role: $('#roleSelect :selected').text(),
+					role: $('#roleSelect :selected').text()
 
 				};
 				if ($("#isAdmin").checked){
