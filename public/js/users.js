@@ -67,6 +67,13 @@ $(function(){
 		});
 		$("#addUser").on("click", function(){
 			$("#userTableDiv").addClass("hidden");
+			console.log($("#roleSelect"));
+			$("#roleSelect option").remove();
+			for (i=0;i<userRoles.length;i++){
+				$options = $("<option></option>");
+				$options.text(userRoles[i].role);
+				$("#roleSelect").append($options)
+			}
 			showUserForm();
 			editMode = false;
 		});
@@ -76,6 +83,7 @@ $(function(){
 			editMode = true;
 			editIndex = $(this).parent().index();
 			console.log($("#roleSelect"));
+			$("#roleSelect option").remove();
 			for (i=0;i<userRoles.length;i++){
 				$options = $("<option></option>");
 				$options.text(userRoles[i].role);
