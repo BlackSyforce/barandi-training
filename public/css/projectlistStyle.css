@@ -1,10 +1,17 @@
-<<<<<<< HEAD
+
 #ProjectTable{
-	width: 70%;
-=======
-#ProjectTable {
 	width: 70%;
 	margin: 50px 100px;
 	float: left;
->>>>>>> 1161ef714ea2b04705844cf226b33a41fc706dcc
+}
+
+#projectForm{
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+
+.action {
+	cursor: pointer;
+
 }
