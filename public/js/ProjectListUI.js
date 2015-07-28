@@ -2,6 +2,8 @@ $(function() {
 
 	var projectList = [];
 
+	var userProj = [];
+
 	var editIndex;
 	var editMode = false;
 
@@ -39,6 +41,7 @@ $(function() {
 
 	function showForm() {
 		$('#projectForm').removeClass('hidden');
+		renderUsers();
 	}
 
 	function hideForm() {
@@ -59,6 +62,30 @@ $(function() {
 			clearTable();
 			renderTable();
 	});
+
+	jQuery.ajax({
+		method: "GET",
+		url: "http://localhost:4000/users"
+	}) .done(function(data) {
+			for (j=0; j<data.length; j++) {
+				userProj[j] = data[j];
+			}
+	});
+
+	function renderUsers () {
+		var $body = $("#usersP");
+
+		for (var i = 0; i < userProj.length; i++) {
+
+			var $label = $('<label></label><br />');
+			var $check = $('<input type="checkbox">');
+			$($label).text(userProj[i].firstName + " " +userProj[i].lastName);
+			$($check).val(userProj[i]._id);
+
+			$body.append($check);
+			$body.append($label);
+		}
+	}
 
 	function addEvents () {
 		$('#projects').on('click', function() {
@@ -139,17 +166,31 @@ $(function() {
 				showTable();
 			} else {
 				var $items = $("#projectForm form input[type='text']");
+				var $checksAll = $("#projectForm form input[type='checkbox']");
+				var checksCount = 0;
+
 				var obj = {
 					name: $($items[0]).val(),
 					description: $($items[1]).val(),
-					author: $($items[2]).val(),
-					users: $($items[3]).val()
+					author: $($items[2]).val()
 				};
 
+				obj.users = [];
+
+				for ( var x=0; x<$checksAll.length; x++ ) {
+					console.log($($checksAll[x]))
+					if ( $checksAll[x].checked ) {
+						checksCount++;
+						obj.users.push($($checksAll[x]).val());
+					}
+				}
+				console.log(checksCount)
 				jQuery.ajax({
 					method: "POST",
+					dataType: 'json',
+					contentType: "application/json",
 					url: "http://localhost:4000/project",
-					data: obj
+					data: JSON.stringify(obj)
 				}) .done(function(data) {
 					projectList.push(data);
 					clearTable();

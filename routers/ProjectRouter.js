@@ -15,6 +15,7 @@ var ProjectRouter = function(app, Mongoose) {
 	 * Save a new project
 	 */
 	app.post("/project", function(request, response) {
+		console.log(request.body)
 				var project = new Project({
 					name: request.body.name,
 					description: request.body.description,
@@ -23,7 +24,11 @@ var ProjectRouter = function(app, Mongoose) {
 				});
 
 				project.save(function(error, result) {
-					response.status(200).json(result);
+					if (error) {
+						response.status(500).json(error);
+					} else {
+						response.status(200).json(result);
+					}
 				});
 	});
 	/**
