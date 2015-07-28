@@ -1,0 +1,13 @@
+#roleList, #skillList {
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+#roleForm, #skillForm {
+	width: 70%;
+	margin: 50px 100px;
+	float: left;
+}
+.action {
+	cursor: pointer;
+}
