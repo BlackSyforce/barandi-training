@@ -3,8 +3,10 @@ $(function() {
 	var editIndex;
 	var editMode = false;
 
+	console.log("uuuuuuuuu")
+
 	function renderTable() {
-		var $template = $('<tr><td><td class="action"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td></tr>');
+		var $template = $('<tr><td></td><td class="action"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td></tr>');
 		var $body = $("#roleList tbody");
 
 		for (var i = 0; i < roleList.length; i++) {
@@ -53,6 +55,7 @@ $(function() {
 	});
 
 	function addEvents () {
+		console.log("kkkkkkkkk")
 		$('#role').on('click', function() {
 			hideForm();
 			$('#projectBody div').addClass('hidden');
@@ -101,6 +104,7 @@ $(function() {
 		});
 
 		$("#saveRole").on('click', function() {
+			console.log("hello")
 			if (editMode){
 				var $items = $("#roleForm form input[type='text']");
 				var objNew = {
