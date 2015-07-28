@@ -1,6 +1,7 @@
 $(function(){
 	var userList = [];
 	var userRoles = [];
+	var userSkills = [];
 	var editIndex;
 	var editMode = false;
 
@@ -45,6 +46,23 @@ $(function(){
 		}
 
 	}
+	function renderSkills () {
+		var $body = $("#skills");
+
+		for (var i = 0; i < userSkills.length; i++) {
+
+			var $label = $('<label></label><br />');
+			var $check = $('<input type="checkbox">');
+			$($label).text(userSkills[i].name);
+			$($check).val(userSkills[i]._id);
+			console.log('aaa',userSkills)
+			$body.append($check);
+			$body.append($label);
+		}
+	}
+	function removeSkills(){
+		$("#skills").empty();
+	}
 
 	function clearTable() {
 		$("#userTable tbody tr").remove();
@@ -76,10 +94,13 @@ $(function(){
 			}
 			showUserForm();
 			editMode = false;
+			removeSkills();
+			renderSkills();
 		});
 		console.log($("#userTable"));
 		$("#userTable tbody").on("click", "td:not(:last-child)", function(){
 			showUserForm();
+			$("#userTableDiv").addClass("hidden");
 			editMode = true;
 			editIndex = $(this).parent().index();
 			console.log($("#roleSelect"));
@@ -89,12 +110,14 @@ $(function(){
 				$options.text(userRoles[i].role);
 				$("#roleSelect").append($options)
 			}
+			removeSkills();
+			renderSkills();
+			
 			$(".form-group input[name='firstname']").val(userList[editIndex].firstname);
 			$(".form-group input[name='lastname']").val(userList[editIndex].lastname);
 			$(".form-group input[name='username']").val(userList[editIndex].username);
 			$(".form-group input[name='eMail']").val(userList[editIndex].email);
 			$(".form-group input[name='city']").val(userList[editIndex].city);
-			$(".form-group input[name='skill']").val(userList[editIndex].skill);
 			if (userList[editIndex].isAdmin){
 				$("#isAdmin").prop("checked",true);
 			} else {
@@ -111,11 +134,10 @@ $(function(){
 					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
-					role: $($items[5]).val(),
-					skill: $($items[6]).val()
+					role: $('#roleSelect :selected').text(),
 
 				};
-				if ($("#isAdmin").attr("checked")){
+				if ($("#isAdmin").checked){
 					objNew.isAdmin = true;
 				} else {
 					objNew.isAdmin = false;
@@ -143,18 +165,16 @@ $(function(){
 					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
-					role: $($items[5]).val(),
-					skill: $($items[6]).val()
+					role: $('#roleSelect :selected').text(),
 				};
 				if ($("#isAdmin").attr("checked")){
 					obj.isAdmin = true;
 				} else {
 					obj.isAdmin = false;
 				}
-
 				jQuery.ajax({
 					method: "POST",
-					url: "http://localhost:4000/user",
+					url: "http://localhost:4000/user/" + newIndex ,
 					data: obj
 				}) .done(function(data) {
 					userList.push(data);
@@ -169,6 +189,13 @@ $(function(){
 
 		});
 	}
+	$.ajax({
+		method: 'GET',
+		url: 'http://localhost:4000/skills'
+	}).done(function(skills){
+		console.log(skills);
+		userSkills = skills;
+	});
 	$.ajax({
 		method: 'GET',
 		url: 'http://localhost:4000/users'
