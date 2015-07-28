@@ -28,11 +28,11 @@ var UserRouter = function(app, Mongoose) {
 	/**
 	 * Create a new user.
 	 */
-	app.post("/user", function(request, response) {
+	app.post("/user/:id", function(request, response) {
 		var user = new User({
-			firstname: request.body.firstname,
-			lastname: request.body.lastname,
-			username: request.body.username,
+			firstName: request.body.firstName,
+			lastName: request.body.lastName,
+			userName: request.body.userName,
 			email: request.body.email,
 			city: request.body.city,
 			isAdmin: request.body.isAdmin,
@@ -53,9 +53,9 @@ var UserRouter = function(app, Mongoose) {
 			if (error || !result) {
 				response.status(200).json(result);
 			} else {
-				result.firstname = request.body.firstname;
-				result.lastname = request.body.lastname;
-				result.username = request.body.username;
+				result.firstName = request.body.firstName;
+				result.lastName = request.body.lastName;
+				result.userName = request.body.userName;
 				result.email = request.body.email;
 				result.city = request.body.city;
 				result.isAdmin = request.body.isAdmin;

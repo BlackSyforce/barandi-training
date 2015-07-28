@@ -12,7 +12,9 @@
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/rolestyle.css">
+	<link rel="stylesheet" type="text/css" href="./css/userstyle.css">
 	<script type="text/javascript" src="./js/role.js"></script>
+	<script type="text/javascript" src="./js/users.js"></script>
 <style>
 #header{
 	width:100%;
@@ -70,6 +72,63 @@
 					    <input type="text" class="form-control" placeholder="Role">
 					</div>
 					<input type="button" value="Save" id="saveRole" class="btn btn-success">
+				</form>
+			</div>
+			<div id="userTableDiv" class="hidden">
+				<table class="table table-hover" id="userTable">
+					<thead>
+						<td>First Name</td>
+						<td>Last Name</td>
+						<td>Username</td>
+						<td>Email</td>
+						<td>Role</td>
+						<td>Action</td>
+					</thead>
+					<tbody></tbody>
+				</table>
+				<button type="button" class="btn btn-success" id="addUser">Add User</button>
+			</div>
+			<div class="well hidden" id="userForm">
+				<form>
+					<div class="form-group">
+						<div>
+					    <label>First Name</label>
+					    <input type="text" class="form-control" name="firstName" placeholder="First Name">
+					    </div>
+					    <div>
+					    <label>Last Name</label>
+					    <input type="text" class="form-control" name="lastName" placeholder="Last Name">
+					    </div>
+					    <div>
+					    <label>Username</label>
+					    <input type="text" class="form-control" name="userName" placeholder="Username">
+					    </div>
+					    <div>
+					    <label>Email</label>
+					    <input type="text" class="form-control" name="eMail" placeholder="Email">
+					    </div>
+					    <div>
+					    <label>City</label>
+					    <input type="text" class="form-control" name="city" placeholder="City">
+					    </div>
+					    <div>
+					    <label>Role</label>
+					    <input type="text" class="form-control" name="role" placeholder="Role">
+					    </div>
+					    <div>
+					    <label>Skills</label>
+					    <input type="text" class="form-control" name="skill" placeholder="Skill">
+					    </div>
+					    <div>
+					    <label>Account ID</label>
+					    <input type="text" class="form-control" name="accountId" placeholder="Account ID">
+					    </div>
+					    <div>
+					    <label>Admin?</label>
+					    <input type="checkbox" id="isAdmin" >
+						</div>
+					</div>
+					<input type="button" value="Save" id="saveUser" class="btn btn-success">
 				</form>
 			</div>
 
