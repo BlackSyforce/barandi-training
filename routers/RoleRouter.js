@@ -21,7 +21,6 @@ var RoleRouter = function(app, Mongoose) {
 				role.save(function(error, result) {
 					response.status(200).json(result);
 				});
-		});
 	});
 
 
