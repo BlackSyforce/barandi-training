@@ -15,7 +15,6 @@
 	<script type="text/javascript" src="./js/role.js"></script>
 	<script type="text/javascript" src="./js/users.js"></script>
 	<link rel="stylesheet" type="text/css" href="./css/roleSkillstyle.css">
-	<script type="text/javascript" src="./js/role.js"></script>
 	<script type="text/javascript" src="./js/skill.js"></script>
 
 	<script type="text/javascript" src="./js/ProjectListUI.js"></script>
@@ -39,6 +38,7 @@
 	font-size: 40px;
 	color: #b3b3b3;
 }
+
 
 
 </style>
@@ -118,10 +118,9 @@
 					    <label>City</label>
 					    <input type="text" class="form-control" name="city" placeholder="City">
 					    </div>
-					    <div>
 					    <label>Role</label>
-					    <input type="text" class="form-control" name="role" placeholder="Role">
-					    </div>
+					    <select class="form-control" id="roleSelect">
+						</select>
 					    <div>
 					    <label>Skills</label>
 					    <input type="text" class="form-control" name="skill" placeholder="Skill">
