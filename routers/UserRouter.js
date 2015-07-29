@@ -29,6 +29,7 @@ var UserRouter = function(app, Mongoose) {
 	 * Create a new user.
 	 */
 	app.post("/user", function(request, response) {
+		console.log(request.body)
 		var user = new User({
 			firstname: request.body.firstname,
 			lastname: request.body.lastname,

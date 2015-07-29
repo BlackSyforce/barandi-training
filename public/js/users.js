@@ -82,6 +82,20 @@ $(function(){
 		$("#users").on("click", function(){
 			$("#projectBody div").addClass("hidden");
 			$("#userTableDiv").removeClass("hidden");
+			$.ajax({
+				method: 'GET',
+				url: 'http://localhost:4000/skills'
+				}).done(function(skills){
+					console.log(skills);
+					userSkills = skills;
+			});
+			$.ajax({
+				method: 'GET',
+				url: 'http://localhost:4000/roles'
+				}).done(function(roles){
+					console.log(roles);
+					userRoles = roles;
+				});
 		});
 		$("#addUser").on("click", function(){
 			clearUserForm();
@@ -211,13 +225,7 @@ $(function(){
 
 		});
 	}
-	$.ajax({
-		method: 'GET',
-		url: 'http://localhost:4000/skills'
-	}).done(function(skills){
-		console.log(skills);
-		userSkills = skills;
-	});
+
 	$.ajax({
 		method: 'GET',
 		url: 'http://localhost:4000/users'
