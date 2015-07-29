@@ -7,7 +7,7 @@ var User = function(Mongoose) {
         city: String,
         isAdmin: Boolean,
         role: String,
-        skill: String
+        skills: [Mongoose.Schema.Types.ObjectId]
     });
 
     var User = Mongoose.model("User", schema);

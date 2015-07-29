@@ -84,6 +84,7 @@ $(function(){
 			$("#userTableDiv").removeClass("hidden");
 		});
 		$("#addUser").on("click", function(){
+			clearUserForm();
 			$("#userTableDiv").addClass("hidden");
 			console.log($("#roleSelect"));
 			$("#roleSelect option").remove();
@@ -127,6 +128,8 @@ $(function(){
 		})
 		$("#saveUser").on("click", function(){
 			if (editMode){
+				var $checksAll = $("#skills input[type='checkbox']");
+				var checksCount = 0;
 				var $items = $("#userForm form input[type='text']");
 				var objNew = {
 					firstname: $($items[0]).val(),
@@ -135,12 +138,22 @@ $(function(){
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
 					role: $('#roleSelect :selected').text(),
+					skills: []
 
 				};
-				if ($("#isAdmin").checked){
+				if ($("#isAdmin").prop('checked')== true){
 					objNew.isAdmin = true;
 				} else {
 					objNew.isAdmin = false;
+				}
+				
+				
+				for ( var x=0; x<$checksAll.length; x++ ) {
+					console.log($($checksAll[x]))
+					if ( $checksAll[x].checked ) {
+						checksCount++;
+						objNew.skills.push($($checksAll[x]).val());
+					}
 				}
 
 				var newIndex = userList[editIndex]._id;
@@ -158,6 +171,8 @@ $(function(){
 				hideUserForm();
 				clearUserForm();
 			}else {
+				var $checksAll = $("#skills input[type='checkbox']");
+				var checksCount = 0;
 				var $items = $("#userForm form input[type='text']");
 				var obj = {
 					firstname: $($items[0]).val(),
@@ -171,6 +186,13 @@ $(function(){
 					obj.isAdmin = true;
 				} else {
 					obj.isAdmin = false;
+				}
+				for ( var x=0; x<$checksAll.length; x++ ) {
+					console.log($($checksAll[x]))
+					if ( $checksAll[x].checked ) {
+						checksCount++;
+						obj.skills.push($($checksAll[x]).val());
+					}
 				}
 				jQuery.ajax({
 					method: "POST",
