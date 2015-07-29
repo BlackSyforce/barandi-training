@@ -82,6 +82,7 @@ $(function(){
 		$("#users").on("click", function(){
 			$("#projectBody div").addClass("hidden");
 			$("#userTableDiv").removeClass("hidden");
+
 			$.ajax({
 				method: 'GET',
 				url: 'http://localhost:4000/skills'
@@ -92,6 +93,11 @@ $(function(){
 			$.ajax({
 				method: 'GET',
 				url: 'http://localhost:4000/roles'
+
+				$.ajax({
+					method: 'GET',
+					url: 'http://localhost:4000/roles'
+
 				}).done(function(roles){
 					console.log(roles);
 					userRoles = roles;
@@ -107,6 +113,7 @@ $(function(){
 				$options.text(userRoles[i].role);
 				$("#roleSelect").append($options)
 			}
+			clearUserForm();
 			showUserForm();
 			editMode = false;
 			removeSkills();
@@ -235,13 +242,7 @@ $(function(){
 		clearTable();
 		renderTable();
 	});
-	$.ajax({
-		method: 'GET',
-		url: 'http://localhost:4000/roles'
-	}).done(function(roles){
-		console.log(roles);
-		userRoles = roles;
-	});
+
 	addEvents();
 
 });
