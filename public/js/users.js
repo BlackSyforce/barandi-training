@@ -146,6 +146,22 @@ $(function(){
 				$("#isAdmin").prop("checked",false);
 			}
 
+			var $checkInput = $("#skills").find("input");
+			$.each(userList[editIndex].skills,function(index, item){
+				for (i=0;i<userSkills.length;i++){
+					if(userSkills[i]._id == item){
+						for (var j = 0; j < $checkInput.length; j++) {
+							var $elem = $($checkInput[j]);
+							if ($elem.attr("value") == item) {
+								$elem.prop('checked',true);
+							}
+						}
+						
+
+					}
+				}
+			});
+
 		})
 		$("#saveUser").on("click", function(){
 			if (editMode){
@@ -181,8 +197,10 @@ $(function(){
 
 				jQuery.ajax({
 					method: "PUT",
+					dataType: 'json',
+					contentType: "application/json",
 					url: "http://localhost:4000/user/" + newIndex,
-					data: objNew
+					data: JSON.stringify(objNew)
 				}) .done(function(data) {
 					userList[editIndex] = objNew;
 					clearTable();
@@ -217,6 +235,8 @@ $(function(){
 				}
 				jQuery.ajax({
 					method: "POST",
+					dataType: 'json',
+					contentType: "application/json",
 					url: "http://localhost:4000/user",
 					data: obj
 				}) .done(function(data) {

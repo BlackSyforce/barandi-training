@@ -62,7 +62,7 @@ var UserRouter = function(app, Mongoose) {
 				result.isAdmin = request.body.isAdmin;
 				result.role = request.body.role;
 				result.accountId = request.body.accountId;
-
+				result.skills = request.body.skills;
 				result.save(function(error, result) {
 					response.status(200).json(result);
 				});
