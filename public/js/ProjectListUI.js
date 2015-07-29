@@ -112,11 +112,22 @@ $(function() {
 			hideTable();
 			showForm();
 			var $oldData = $(this).find('td');
-			console.log('here');
 			editIndex = $(this).index();
 			var $newData = $("#projectForm form input[type='text']");
+			var $newChecks = $('#projectForm form input[type="checkbox"]');
 			for (var i = 0; i < $newData.length; i++) {
 				$($newData[i]).val($($oldData[i]).text());
+			}
+			for ( var j=0; j<projectList[editIndex].users.length; j++ ) {
+				for ( var k=0; k<userProj.length; k++ ) {
+					if ( projectList[editIndex].users[j] == userProj[k]._id ) {
+						$newChecks[k].checked = true;
+						console.log($newChecks[k], 'aa')
+					} else {
+						$newChecks[k].checked = false;
+						console.log($newChecks[k], 'bb')
+					}
+				}
 			}
 			editMode = true;
 		});
@@ -149,12 +160,10 @@ $(function() {
 					description: $($items[1]).val(),
 					author: $($items[2]).val()
 				};
-				console.log(objNew)
 				objNew.users = [];
 
 				var newIndex = projectList[editIndex]._id;
 				for ( var x=0; x<$checksAll.length; x++ ) {
-					console.log($($checksAll[x]))
 					if ( $checksAll[x].checked ) {
 						checksCount++;
 						objNew.users.push($($checksAll[x]).val());
@@ -193,13 +202,11 @@ $(function() {
 				obj.users = [];
 
 				for ( var x=0; x<$checksAll.length; x++ ) {
-					console.log($($checksAll[x]))
 					if ( $checksAll[x].checked ) {
 						checksCount++;
 						obj.users.push($($checksAll[x]).val());
 					}
 				}
-				console.log(checksCount)
 				jQuery.ajax({
 					method: "POST",
 					dataType: 'json',
