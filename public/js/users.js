@@ -160,8 +160,10 @@ $(function(){
 
 				jQuery.ajax({
 					method: "PUT",
+					dataType: 'json',
+					contentType: "application/json",
 					url: "http://localhost:4000/user/" + newIndex,
-					data: objNew
+					data: JSON.stringify(objNew)
 				}) .done(function(data) {
 					userList[editIndex] = objNew;
 					clearTable();
@@ -196,6 +198,8 @@ $(function(){
 				}
 				jQuery.ajax({
 					method: "POST",
+					dataType: 'json',
+					contentType: "application/json",
 					url: "http://localhost:4000/user",
 					data: obj
 				}) .done(function(data) {
