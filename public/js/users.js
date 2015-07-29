@@ -137,7 +137,7 @@ $(function(){
 					username: $($items[2]).val(),
 					email: $($items[3]).val(),
 					city: $($items[4]).val(),
-					skills: []
+					skills: [],
 					role: $('#roleSelect :selected').text()
 
 				};
@@ -182,7 +182,7 @@ $(function(){
 					city: $($items[4]).val(),
 					role: $('#roleSelect :selected').text(),
 				};
-				if ($("#isAdmin").attr("checked")){
+				if ($("#isAdmin").prop("checked") == true){
 					obj.isAdmin = true;
 				} else {
 					obj.isAdmin = false;
