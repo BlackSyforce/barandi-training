@@ -133,6 +133,22 @@ $(function(){
 				$("#isAdmin").prop("checked",false);
 			}
 
+			var $checkInput = $("#skills").find("input");
+			$.each(userList[editIndex].skills,function(index, item){
+				for (i=0;i<userSkills.length;i++){
+					if(userSkills[i]._id == item){
+						for (var j = 0; j < $checkInput.length; j++) {
+							var $elem = $($checkInput[j]);
+							if ($elem.attr("value") == item) {
+								$elem.prop('checked',true);
+							}
+						}
+						
+
+					}
+				}
+			});
+
 		})
 		$("#saveUser").on("click", function(){
 			if (editMode){
