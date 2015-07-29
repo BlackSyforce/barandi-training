@@ -64,14 +64,6 @@ $(function() {
 			renderTable();
 	});
 
-	jQuery.ajax({
-		method: "GET",
-		url: "http://localhost:4000/users"
-	}) .done(function(data) {
-			for (j=0; j<data.length; j++) {
-				userProj[j] = data[j];
-			}
-	});
 
 	function renderUsers () {
 		var $body = $("#usersP");
@@ -97,11 +89,20 @@ $(function() {
 			$('#projectBody div').addClass('hidden');
 			$('#projectBody div form div').removeClass('hidden');
 			showTable();
+			jQuery.ajax({
+				method: "GET",
+				url: "http://localhost:4000/users"
+			}) .done(function(data) {
+					for (j=0; j<data.length; j++) {
+						userProj[j] = data[j];
+					}
+			});
 		});
 
 		$('#addingProj').on('click', function() {
 			hideTable();
 			showForm();
+			clearForm();
 			editMode = false;
 		});
 
@@ -118,14 +119,13 @@ $(function() {
 			for (var i = 0; i < $newData.length; i++) {
 				$($newData[i]).val($($oldData[i]).text());
 			}
-			for ( var j=0; j<projectList[editIndex].users.length; j++ ) {
-				for ( var k=0; k<userProj.length; k++ ) {
-					if ( projectList[editIndex].users[j] == userProj[k]._id ) {
-						$newChecks[k].checked = true;
-						console.log($newChecks[k], 'aa')
+			for ( var j=0; j<userProj.length; j++ ) {
+				for ( var k=0; k<projectList[editIndex].users.length; k++ ) {
+					if ( projectList[editIndex].users[k] == userProj[j]._id ) {
+						$newChecks[j].checked = true;
+						break;
 					} else {
-						$newChecks[k].checked = false;
-						console.log($newChecks[k], 'bb')
+						$newChecks[j].checked = false;
 					}
 				}
 			}
